@@ -1,22 +1,31 @@
 import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useField } from "@unform/core";
-import { BsPaperclip } from "react-icons/bs";
 
 const StyledInput = styled.input`
-  border: 1px solid black;
+  border: none;
   border-radius: 25px;
-  padding: 6px 15px;
+  padding: 10px 30px;
   width: 100%;
-`;
+  text-align: center;
+  font-size: 20px;
+  `;
 
 const Label = styled.label`
   color: black;
   font-size: 15pt;
   font-weight: 900;
+  margin-top: 30px;
+  width: 100%;
 `;
 
-export default function Input({ label, name, inputfile, ...rest }) {
+export default function Input({
+  label,
+  name,
+  inputfile,
+  placeholder,
+  ...rest
+}) {
   const inputRef = useRef(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -39,8 +48,12 @@ export default function Input({ label, name, inputfile, ...rest }) {
   return (
     <Label>
       {label}
-      <StyledInput ref={inputRef} defaultValue={defaultValue} {...rest} />
-      {inputfile && <BsPaperclip />}
+      <StyledInput
+        ref={inputRef}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+        {...rest}
+      />
     </Label>
   );
 }

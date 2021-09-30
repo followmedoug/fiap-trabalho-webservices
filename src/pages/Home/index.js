@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
+import "./customStyles.css";
+import "react-datepicker/dist/react-datepicker.css";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { FaRegEdit, FaRegTrashAlt, FaPlus } from "react-icons/fa";
-import Modal from "react-modal";
 import { Form } from "@unform/web";
 import ContainerMain from "../../components/ContainerMain";
 import Wrapper from "../../components/Wrapper";
 import ContainerCard from "../../components/ContainerCard";
 import WrapperFlex from "../../components/WrapperFlex";
 import { Creators as UserActions } from "../../store/ducks/user";
-import Input from "./Input";
+// import Input from "./Input";
 
 const TableHeader = styled(WrapperFlex)`
   background: #d6d6b1;
@@ -53,6 +55,7 @@ const Button = styled.button`
     border-radius: 20px;
     background-color: #de541e;
     color: #fff;
+    cursor: pointer;
     padding: 5px 15px;
     transition: all 0.3s ease;
 
@@ -61,28 +64,9 @@ const Button = styled.button`
     }
 `;
 
-const customStyles = {
-  overlay: {
-    backgroundColor: "rgba(64, 59, 56, 0.7)",
-    backdropFilter: "blur(3px)",
-    zIndex: 2,
-  },
-  content: {
-    background: "#e7e7e7",
-    borderRadius: "15px",
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    maxWidth: "500px",
-    width: "100%",
-  },
-};
-
 export default function Home() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(UserActions.getAppointmentsRequest());
@@ -94,7 +78,7 @@ export default function Home() {
         <WrapperFlex
           style={{ justifyContent: "flex-end", padding: "15px 30px" }}
         >
-          <Button>
+          <Button onClick={() => history.push("/register")}>
             <FaPlus /> Nova Entrada
           </Button>
         </WrapperFlex>
@@ -125,12 +109,6 @@ export default function Home() {
           </TableLine>
         </ContainerCard>
       </Wrapper>
-
-      <Modal isOpen style={customStyles}>
-        <Form onSubmit={console.log("teste")}>
-          <Input name="teste" />
-        </Form>
-      </Modal>
     </ContainerMain>
   );
 }
