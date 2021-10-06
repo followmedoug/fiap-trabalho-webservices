@@ -1,9 +1,8 @@
 import "react-datepicker/dist/react-datepicker.css"
-import React, { useRef, useState } from "react"
+import React from "react"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import { Form } from "@unform/web"
-import DatePicker from "react-datepicker"
 import ContainerMain from "../../components/ContainerMain"
 import WrapperFlex from "../../components/WrapperFlex"
 
@@ -30,16 +29,6 @@ const FormTitle = styled.h1`
   font-size: 25px;
 `
 
-const StyledTextArea = styled.textarea`
-  border: none;
-  border-radius: 25px;
-  resize: none;
-  height: 200px;
-  outline: none;
-  width: 100%;
-  padding: 10px;
-`
-
 const Button = styled.button`
   border: none;
   border-radius: 20px;
@@ -63,26 +52,15 @@ const Input = styled.input`
   width: 100%;
 `
 
-export default function Register() {
+export default function RegisterUser() {
   const history = useHistory()
-  const inputRef = useRef(null)
-  const [date, setDate] = useState("")
 
   return (
     <FormWrapper>
-      <FormTitle>Nova Entrada</FormTitle>
+      <FormTitle>Crie sua conta</FormTitle>
       <StyledForm>
-        <DatePicker
-          ref={inputRef}
-          showTimeSelect
-          name="batida"
-          selected={date}
-          onChange={(event) => setDate(event)}
-          dateFormat="dd/MM/yyyy h:mm aa"
-          locale="pt-BR"
-          customInput={<Input />}
-        />
-        <StyledTextArea placeholder="Justifique sua batida" />
+        <Input name="email" placeholder="digite o seu email" />
+        <Input name="password" type="password" placeholder="digite sua senha" />
         <WrapperFlex
           style={{ width: "100%", justifyContent: "center", marginTop: "20px" }}
         >

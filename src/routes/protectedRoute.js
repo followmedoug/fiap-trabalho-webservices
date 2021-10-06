@@ -1,20 +1,18 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { isAuthenticated } from "../services/auth";
+import React from "react"
+import { Route, Redirect } from "react-router-dom"
+import { isAuthenticated } from "../services/auth"
 
-const ProtectedRoute = ({ permissions, component: Component, ...rest }) => {
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  console.log(isAuthenticated)
+
   return (
     <Route
       {...rest}
-      reder={(props) =>
-        !isAuthenticated() ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={{ pathname: "/login" }} />
-        )
+      render={(props) =>
+        isAuthenticated() ? <Component {...props} /> : <Redirect to="/login" />
       }
     />
-  );
-};
+  )
+}
 
-export default ProtectedRoute;
+export default ProtectedRoute

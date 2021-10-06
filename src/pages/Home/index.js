@@ -1,17 +1,15 @@
-import "./customStyles.css";
-import "react-datepicker/dist/react-datepicker.css";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import styled, { css } from "styled-components";
-import { FaRegEdit, FaRegTrashAlt, FaPlus } from "react-icons/fa";
-import { Form } from "@unform/web";
-import ContainerMain from "../../components/ContainerMain";
-import Wrapper from "../../components/Wrapper";
-import ContainerCard from "../../components/ContainerCard";
-import WrapperFlex from "../../components/WrapperFlex";
-import { Creators as UserActions } from "../../store/ducks/user";
-// import Input from "./Input";
+import "./customStyles.css"
+import "react-datepicker/dist/react-datepicker.css"
+import React, { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { useHistory } from "react-router-dom"
+import styled, { css } from "styled-components"
+import { FaRegEdit, FaRegTrashAlt, FaPlus } from "react-icons/fa"
+import ContainerMain from "../../components/ContainerMain"
+import Wrapper from "../../components/Wrapper"
+import ContainerCard from "../../components/ContainerCard"
+import WrapperFlex from "../../components/WrapperFlex"
+import { Creators as UserActions } from "../../store/ducks/user"
 
 const TableHeader = styled(WrapperFlex)`
   background: #d6d6b1;
@@ -20,7 +18,7 @@ const TableHeader = styled(WrapperFlex)`
   border-top-right-radius: inherit;
   padding: 15px 30px;
   justify-content: space-between;
-`;
+`
 
 const TableItem = styled.p`
   flex: 1;
@@ -33,10 +31,10 @@ const TableItem = styled.p`
   ${({ flex }) =>
     flex
       ? css`
-      flex: ${flex}
-  `
+          flex: ${flex};
+        `
       : ""}
-`;
+`
 
 const TableLine = styled(WrapperFlex)`
   background: #fff;
@@ -48,29 +46,29 @@ const TableLine = styled(WrapperFlex)`
   :hover {
     background: rgba(214, 214, 177, 0.6);
   }
-`;
+`
 
 const Button = styled.button`
-    border: none;
-    border-radius: 20px;
-    background-color: #de541e;
-    color: #fff;
-    cursor: pointer;
-    padding: 5px 15px;
-    transition: all 0.3s ease;
+  border: none;
+  border-radius: 20px;
+  background-color: #de541e;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px 15px;
+  transition: all 0.3s ease;
 
-    :hover {
-      background: #af4217;
-    }
-`;
+  :hover {
+    background: #af4217;
+  }
+`
 
 export default function Home() {
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   useEffect(() => {
-    dispatch(UserActions.getAppointmentsRequest());
-  }, []);
+    dispatch(UserActions.getAppointmentsRequest())
+  }, [])
 
   return (
     <ContainerMain>
@@ -98,7 +96,7 @@ export default function Home() {
             <TableItem flex={1}>2021-09-24T23:06:11.892Z</TableItem>
             <TableItem flex={0.3}>
               <div style={{ cursor: "pointer" }}>
-                <FaRegEdit />
+                <FaRegEdit onClick={() => history.push("/edit/1")} />
               </div>
             </TableItem>
             <TableItem flex={0.3}>
@@ -110,5 +108,5 @@ export default function Home() {
         </ContainerCard>
       </Wrapper>
     </ContainerMain>
-  );
+  )
 }

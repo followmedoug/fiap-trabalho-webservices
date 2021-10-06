@@ -63,14 +63,14 @@ const Input = styled.input`
   width: 100%;
 `
 
-export default function Register() {
+export default function Edit() {
   const history = useHistory()
   const inputRef = useRef(null)
   const [date, setDate] = useState("")
 
   return (
     <FormWrapper>
-      <FormTitle>Nova Entrada</FormTitle>
+      <FormTitle>Edição de Entrada</FormTitle>
       <StyledForm>
         <DatePicker
           ref={inputRef}
