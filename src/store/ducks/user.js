@@ -5,6 +5,12 @@ export const Types = {
   LOGIN_REQUEST: "user/LOGIN_REQUEST",
   LOGIN_SUCCESS: "user/LOGIN_SUCCESS",
   LOGIN_ERROR: "user/LOGIN_ERROR",
+  CREATE_APPOINTMENT_REQUEST: "user/CREATE_APPOINTMENT_REQUEST",
+  CREATE_APPOINTMENT_SUCCESS: "user/CREATE_APPOINTMENT_SUCCESS",
+  CREATE_APPOINTMENT_ERROR: "user/CREATE_APPOINTMENT_ERROR",
+  CREATE_USER_REQUEST: "user/CREATE_USER_REQUEST",
+  CREATE_USER_SUCCESS: "user/CREATE_USER_SUCCESS",
+  CREATE_USER_ERROR: "user/CREATE_USER_ERROR",
 }
 
 const INITIAL_STATE = {
@@ -33,13 +39,35 @@ export default function user(state = INITIAL_STATE, action) {
     case Types.LOGIN_ERROR:
       return { ...state, loading: false, hasError: true }
 
+    case Types.CREATE_APPOINTMENT_REQUEST:
+      return { ...state, loading: true, hasError: false }
+
+    case Types.CREATE_APPOINTMENT_SUCCESS:
+      return { ...state, loading: false, hasError: false }
+
+    case Types.CREATE_APPOINTMENT_ERROR:
+      return { ...state, loading: false, hasError: true }
+
+    case Types.CREATE_USER_REQUEST:
+      return { ...state, loading: true, hasError: false }
+
+    case Types.CREATE_USER_SUCCESS:
+      return { ...state, loading: false, hasError: false }
+
+    case Types.CREATE_USER_ERROR:
+      return { ...state, loading: false, hasError: true }
+
     default:
       return state
   }
 }
 
 export const Creators = {
-  getAppointmentsRequest: () => ({ type: Types.GET_APPOINTMENTS_REQUEST }),
+  getAppointmentsRequest: (initialDate, finalDate) => ({
+    type: Types.GET_APPOINTMENTS_REQUEST,
+    initialDate,
+    finalDate,
+  }),
   getAppointmentsSuccess: (data) => ({
     type: Types.GET_APPOINTMENTS_SUCCESS,
     data,
@@ -54,4 +82,27 @@ export const Creators = {
   }),
   loginSuccess: () => ({ type: Types.LOGIN_SUCCESS }),
   loginError: () => ({ type: Types.LOGIN_ERROR }),
+  createAppointmentRequest: (date, comment) => ({
+    type: Types.CREATE_APPOINTMENT_REQUEST,
+    date,
+    comment,
+  }),
+  createAppointmentSuccess: () => ({
+    type: Types.CREATE_APPOINTMENT_SUCCESS,
+  }),
+  createAppointmentError: () => ({
+    type: Types.CREATE_APPOINTMENT_SUCCESS,
+  }),
+  createUserRequest: (nome, email, password) => ({
+    type: Types.CREATE_USER_REQUEST,
+    nome,
+    email,
+    password,
+  }),
+  createUserSuccess: () => ({
+    type: Types.CREATE_USER_SUCCESS,
+  }),
+  createUserError: () => ({
+    type: Types.CREATE_USER_ERROR,
+  }),
 }

@@ -1,10 +1,12 @@
 import "./customStyles.css"
 import "react-datepicker/dist/react-datepicker.css"
 import React, { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import styled, { css } from "styled-components"
 import { FaRegEdit, FaRegTrashAlt, FaPlus } from "react-icons/fa"
+import { format, subDays } from "date-fns"
+
 import ContainerMain from "../../components/ContainerMain"
 import Wrapper from "../../components/Wrapper"
 import ContainerCard from "../../components/ContainerCard"
@@ -20,7 +22,7 @@ const TableHeader = styled(WrapperFlex)`
   justify-content: space-between;
 `
 
-const TableItem = styled.p`
+const TableItem = styled.div`
   flex: 1;
   justify-content: flex-start;
 
@@ -66,9 +68,16 @@ export default function Home() {
   const dispatch = useDispatch()
   const history = useHistory()
 
+  const { data } = useSelector((state) => state.user)
+
   useEffect(() => {
-    dispatch(UserActions.getAppointmentsRequest())
+    const initialDate = format(subDays(new Date(), 30), "yyyy-MM-dd")
+    const finalDate = format(new Date(), "yyyy-MM-dd")
+
+    dispatch(UserActions.getAppointmentsRequest(initialDate, finalDate))
   }, [])
+
+  console.log(data)
 
   return (
     <ContainerMain>
@@ -89,22 +98,26 @@ export default function Home() {
             <TableItem flex={0.3}></TableItem>
             <TableItem flex={0.3}></TableItem>
           </TableHeader>
-          <TableLine>
-            <TableItem flex={0.2}>1</TableItem>
-            <TableItem flex={1}>2021-09-24T23:06:11.892Z</TableItem>
-            <TableItem flex={1}>2021-09-24T23:06:11.892Z</TableItem>
-            <TableItem flex={1}>2021-09-24T23:06:11.892Z</TableItem>
-            <TableItem flex={0.3}>
-              <div style={{ cursor: "pointer" }}>
-                <FaRegEdit onClick={() => history.push("/edit/1")} />
-              </div>
-            </TableItem>
-            <TableItem flex={0.3}>
-              <div style={{ cursor: "pointer" }}>
-                <FaRegTrashAlt />
-              </div>
-            </TableItem>
-          </TableLine>
+          {data.length
+            ? data.map((d) => (
+                <TableLine>
+                  <TableItem flex={0.2}>{d.id}</TableItem>
+                  <TableItem flex={1}>2021-09-24T23:06:11.892Z</TableItem>
+                  <TableItem flex={1}>2021-09-24T23:06:11.892Z</TableItem>
+                  <TableItem flex={1}>2021-09-24T23:06:11.892Z</TableItem>
+                  <TableItem flex={0.3}>
+                    <div style={{ cursor: "pointer" }}>
+                      <FaRegEdit onClick={() => history.push("/edit/1")} />
+                    </div>
+                  </TableItem>
+                  <TableItem flex={0.3}>
+                    <div style={{ cursor: "pointer" }}>
+                      <FaRegTrashAlt />
+                    </div>
+                  </TableItem>
+                </TableLine>
+              ))
+            : ""}
         </ContainerCard>
       </Wrapper>
     </ContainerMain>

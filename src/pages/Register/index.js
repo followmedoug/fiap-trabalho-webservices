@@ -1,11 +1,16 @@
 import "react-datepicker/dist/react-datepicker.css"
 import React, { useRef, useState } from "react"
+import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import { Form } from "@unform/web"
 import DatePicker from "react-datepicker"
+import { format } from "date-fns"
+
 import ContainerMain from "../../components/ContainerMain"
 import WrapperFlex from "../../components/WrapperFlex"
+
+import { Creators as UserActions } from "../../store/ducks/user"
 
 const FormWrapper = styled(ContainerMain)`
   display: flex;
@@ -64,14 +69,23 @@ const Input = styled.input`
 `
 
 export default function Register() {
+  const dispatch = useDispatch()
   const history = useHistory()
   const inputRef = useRef(null)
+
   const [date, setDate] = useState("")
+  const [comment, setComment] = useState("")
+
+  const handleSubmit = () => {
+    const selectedDate = format(date, "yyyy-mm-dd")
+
+    dispatch(UserActions.createAppointmentRequest(selectedDate, comment))
+  }
 
   return (
     <FormWrapper>
       <FormTitle>Nova Entrada</FormTitle>
-      <StyledForm>
+      <StyledForm onSubmit={() => console.log("")}>
         <DatePicker
           ref={inputRef}
           showTimeSelect
@@ -82,11 +96,15 @@ export default function Register() {
           locale="pt-BR"
           customInput={<Input />}
         />
-        <StyledTextArea placeholder="Justifique sua batida" />
+        <StyledTextArea
+          value={comment}
+          placeholder="Justifique sua batida"
+          onChange={(event) => setComment(event.target.value)}
+        />
         <WrapperFlex
           style={{ width: "100%", justifyContent: "center", marginTop: "20px" }}
         >
-          <Button style={{ width: "100%" }} onClick={() => history.push("/")}>
+          <Button style={{ width: "100%" }} onClick={() => handleSubmit()}>
             Salvar
           </Button>
         </WrapperFlex>
