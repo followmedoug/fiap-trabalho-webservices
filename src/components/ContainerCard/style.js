@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components"
 
 const slideInFromBottom = keyframes`
   0% {
@@ -10,14 +10,14 @@ const slideInFromBottom = keyframes`
     transform: translateY(0);
     opacity: 1;
   }
-`;
+`
 
 export const Container = styled.div`
-animation: ${slideInFromBottom} 1.4s ease;
+  animation: ${slideInFromBottom} 1.4s ease;
   background-color: #fff;
   border: none;
   border-radius: 15px;
-  padding-bottom: 10px;
   width: 100%;
+  padding: 0 10px 10px 10px;
 }
-`;
+`

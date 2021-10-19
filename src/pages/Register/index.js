@@ -48,7 +48,7 @@ const StyledTextArea = styled.textarea`
 const Button = styled.button`
   border: none;
   border-radius: 20px;
-  background-color: #de541e;
+  background-color: #e91c5d;
   color: #fff;
   cursor: pointer;
   padding: 5px 15px;
@@ -56,7 +56,7 @@ const Button = styled.button`
   padding: 10px 30px;
 
   :hover {
-    background: #af4217;
+    background: #b10f44;
   }
 `
 
