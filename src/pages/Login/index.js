@@ -82,7 +82,7 @@ export default function Login() {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <p onClick={() => history.push("/register-user")}>
+        <p onClick={() => history.push("/register-user")} style={{ color: "#fff", cursor: 'pointer'}}>
           Não tem uma conta? Se cadastre aqui!
         </p>
         <WrapperFlex
