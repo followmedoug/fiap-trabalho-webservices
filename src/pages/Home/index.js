@@ -9,67 +9,17 @@ import { MdArrowDownward } from "react-icons/md"
 import { format, subDays } from "date-fns"
 import { Collapse } from "react-collapse"
 
+import Button from '../../components/Button'
 import ContainerMain from "../../components/ContainerMain"
 import Wrapper from "../../components/Wrapper"
 import WrapperFlex from "../../components/WrapperFlex"
+import WrapperCard from "../../components/WrapperCard"
+import Card from '../../components/Card'
+import WrapperButton from "../../components/WrapperButton"
+import ItemHeader from '../../components/ItemHeader'
 import { Creators as UserActions } from "../../store/ducks/user"
-
-const Button = styled.button`
-  border: none;
-  border-radius: 20px;
-  background-color: #e91c5d;
-
-  color: #fff;
-  cursor: pointer;
-  padding: 5px 15px;
-  transition: all 0.3s ease;
-
-  :hover {
-    background: #b10f44;
-  }
-`
-
-const WrapperCard = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`
-
-const Card = styled.div`
-  display: flex;
-  background-color: white;
-  width: 320px;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 10px;
-  border-radius: 20px;
-`
-
-const WrapperButton = styled.div`
-  padding: 10px;
-  width: 100%;
-  justify-content: flex-end;
-  display: flex;
-`
-
-const ItemHeader = styled.div`
-  padding: 10px;
-`
-
-const ContentWrapper = styled.div`
-  background-color: rgba(0, 0, 0, 0.3);
-  width: 100%;
-  border-radius: 15px;
-`
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px 0;
-  width: 90%;
-`
+import ContentWrapper from '../../components/ContentWrapper'
+import Content from '../../components/Content'
 
 export default function Home() {
   const dispatch = useDispatch()

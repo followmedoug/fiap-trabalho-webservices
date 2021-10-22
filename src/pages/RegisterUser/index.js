@@ -2,58 +2,15 @@ import "react-datepicker/dist/react-datepicker.css"
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import styled from "styled-components"
-import { Form } from "@unform/web"
 
-import ContainerMain from "../../components/ContainerMain"
 import WrapperFlex from "../../components/WrapperFlex"
+import FormWrapper from "../../components/FormWrapper"
+import Form from '../../components/Form'
+import FormTitle from "../../components/FormTitle"
+import Button from "../../components/Button"
+import Input from '../../components/Input'
 
 import { Creators as UserActions } from "../../store/ducks/user"
-
-const FormWrapper = styled(ContainerMain)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-
-const StyledForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 300px;
-  margin-top: 20px;
-`
-
-const FormTitle = styled.h1`
-  color: #fff;
-  text-align: center;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 25px;
-`
-
-const Button = styled.button`
-  border: none;
-  border-radius: 20px;
-  background-color: #de541e;
-  color: #fff;
-  cursor: pointer;
-  padding: 5px 15px;
-  transition: all 0.3s ease;
-  padding: 10px 30px;
-
-  :hover {
-    background: #af4217;
-  }
-`
-
-const Input = styled.input`
-  border: none;
-  border-radius: 15px;
-  padding: 10px;
-  margin-bottom: 20px;
-  width: 100%;
-`
 
 export default function RegisterUser() {
   const dispatch = useDispatch()
@@ -69,7 +26,7 @@ export default function RegisterUser() {
   return (
     <FormWrapper>
       <FormTitle>Crie sua conta</FormTitle>
-      <StyledForm onSubmit={() => console.log("")}>
+      <Form onSubmit={() => console.log("")}>
         <Input
           name="nome"
           placeholder="digite o seu nome"
@@ -89,11 +46,11 @@ export default function RegisterUser() {
         <WrapperFlex
           style={{ width: "100%", justifyContent: "center", marginTop: "20px" }}
         >
-          <Button style={{ width: "100%" }} onClick={() => handleSubmit()}>
+          <Button padding style={{ width: "100%" }} onClick={() => handleSubmit()}>
             Salvar
           </Button>
         </WrapperFlex>
-      </StyledForm>
+      </Form>
     </FormWrapper>
   )
 }
