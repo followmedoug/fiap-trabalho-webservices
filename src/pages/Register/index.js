@@ -8,12 +8,12 @@ import { format } from "date-fns"
 
 import ContainerMain from "../../components/ContainerMain"
 import WrapperFlex from "../../components/WrapperFlex"
-import FormWrapper from '../../components/FormWrapper'
-import Form from '../../components/Form'
-import FormTitle from '../../components/FormTitle'
+import FormWrapper from "../../components/FormWrapper"
+import Form from "../../components/Form"
+import FormTitle from "../../components/FormTitle"
 import Textarea from "../../components/Textarea"
-import Button from '../../components/Button'
-import Input from '../../components/Input'
+import Button from "../../components/Button"
+import Input from "../../components/Input"
 
 import { Creators as UserActions } from "../../store/ducks/user"
 
@@ -53,7 +53,11 @@ export default function Register() {
         <WrapperFlex
           style={{ width: "100%", justifyContent: "center", marginTop: "20px" }}
         >
-          <Button style={{ width: "100%" }} onClick={() => handleSubmit()}>
+          <Button
+            padding
+            style={{ width: "100%" }}
+            onClick={() => handleSubmit()}
+          >
             Salvar
           </Button>
         </WrapperFlex>
